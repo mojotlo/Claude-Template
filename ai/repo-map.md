@@ -28,10 +28,15 @@ Use this file to quickly locate functionality before making changes.
 │   ├── ai-guide.md
 │   ├── repo-map.md             # this file
 │   └── allowed-changes.md
+├── prisma/
+│   ├── schema.prisma           # Database schema and models
+│   └── migrations/             # Migration history — commit these
 ├── src/
 │   ├── domain/                 # Core business logic
 │   ├── services/               # Workflows and orchestration
-│   ├── infrastructure/         # External integrations
+│   ├── infrastructure/
+│   │   └── database/
+│   │       └── client.ts       # Prisma client singleton — import this, not @prisma/client directly
 │   └── utils/                  # Reusable helpers
 └── tests/                      # Test suite
 ```

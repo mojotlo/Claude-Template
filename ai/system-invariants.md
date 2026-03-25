@@ -91,3 +91,9 @@ Do not introduce new architectural styles, frameworks, or libraries unless expli
 
 Do not add, remove, or upgrade npm dependencies without explicit instruction.
 Dependency changes affect security, licensing, and bundle size — they require human review.
+
+## Database Access
+
+Always import the Prisma client from `src/infrastructure/database/client.ts`.
+Never import directly from `@prisma/client` outside of that file.
+Never run `prisma db push` in production — always use `prisma migrate deploy`.

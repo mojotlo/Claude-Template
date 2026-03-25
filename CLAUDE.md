@@ -23,6 +23,15 @@ npm run lint       # lint check
 npm run typecheck  # TypeScript type check
 ```
 
+### Database Commands
+```bash
+npx prisma migrate dev      # create and apply a migration (development)
+npx prisma migrate deploy   # apply migrations (production/CI)
+npx prisma generate         # regenerate Prisma client after schema changes
+npx prisma studio           # open database GUI
+npx prisma db push          # push schema changes without a migration (prototyping only)
+```
+
 > Update these commands to match this project's actual package.json scripts.
 
 ### Stack
