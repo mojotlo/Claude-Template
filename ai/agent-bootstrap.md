@@ -62,6 +62,21 @@ Claude should never consider a task done until verification passes.
 
 ---
 
+## Architecture Decisions
+
+If a task involves introducing a new library, framework, tool, or architectural
+pattern not already in the codebase:
+
+1. **Stop before implementing** — check `ai/decisions/` for an existing ADR
+2. **If no ADR exists** — create one before writing any code
+3. **If an ADR exists but the decision has changed** — update it before implementing
+4. **After implementing** — update the ADR index in `ai/decisions/README.md`
+
+Do not introduce new dependencies or architectural patterns without a documented decision.
+This is not optional — undocumented decisions are not allowed changes.
+
+---
+
 ## Style
 
 - Small, focused commits

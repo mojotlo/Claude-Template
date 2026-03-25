@@ -46,6 +46,7 @@ npx prisma db push          # push schema changes without a migration (prototypi
 - Keep files under 300 lines; 500 is the hard maximum
 - Follow existing patterns — consistency over novelty
 - When in doubt, stop and ask
+- New libraries or architectural patterns require an ADR in `ai/decisions/` before implementation
 
 ---
 

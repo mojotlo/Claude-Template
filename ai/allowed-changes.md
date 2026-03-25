@@ -18,6 +18,7 @@ The agent may:
 - improve error handling
 - improve naming or readability
 - split a file that has exceeded the size limit (300–500 lines)
+- create or update ADRs in `ai/decisions/` when introducing new patterns
 
 All changes must follow the workflow defined in `agent-bootstrap.md`
 and the rules in `CLAUDE.md`.
@@ -42,7 +43,7 @@ Changes must remain minimal and localized. Explain why cross-file changes are ne
 The agent must **NOT** do any of the following without explicit instruction:
 
 - add, remove, or upgrade npm dependencies (`package.json`, lock files)
-- introduce new frameworks, libraries, or tools
+- introduce new frameworks, libraries, or tools without a corresponding ADR in `ai/decisions/`
 - change the overall architecture or layer boundaries
 - perform large refactors spanning multiple modules
 - reorganize the directory structure
