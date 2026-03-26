@@ -108,11 +108,16 @@ Implementation complete + tests passing
     → if code-review reports Must Fix items: fix them, then re-run /code-review
   → invoke /commit-push-pr
     → subagent owns CI monitoring until green
+  → invoke /wrap-session (for significant feature builds only)
+    → human approves any proposed CLAUDE.md updates before they are applied
 ```
 
 Do not invoke a later subagent until the earlier one has reported success.
 Do not skip subagents — each one catches a different class of problems.
 If a subagent fails after 3 attempts to fix the issue, stop and ask for human input.
+
+/wrap-session is optional — skip it for small fixes, docs updates, and dependency bumps.
+Invoke it whenever something went wrong, a retry was needed, or an architecture decision was made.
 
 ---
 
