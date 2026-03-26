@@ -64,6 +64,30 @@ never directly from `@prisma/client`.
 
 ---
 
+## Parallel Development with Worktrees
+
+Work on multiple features simultaneously using git worktrees — each issue gets
+its own directory and branch, with its own Claude Code session.
+
+```bash
+# Start a new feature (creates worktree + branch + opens Claude Code)
+npm run worktree:new 3
+# Claude Code opens in ../my-project-issue-3
+# Tell it: "Implement issue #3"
+
+# After PR is merged, clean up
+npm run worktree:cleanup 3
+# Removes directory, deletes branch, pulls latest main
+```
+
+Run multiple worktrees in parallel from separate terminal tabs. Each Claude Code
+session is isolated — no conflicts between parallel agents.
+
+**Tip:** Enable "Automatically delete head branches" in your GitHub repo settings
+(Settings → General) so remote branches clean up automatically on merge.
+
+---
+
 ## Development Workflow
 
 ```

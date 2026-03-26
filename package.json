@@ -13,7 +13,9 @@
     "test:integration": "vitest run --config vitest.config.integration.ts",
     "test:e2e": "playwright test",
     "test:summary": "npx tsx scripts/summarize-tests.ts",
-    "test:all": "npm test && npm run test:integration && npm run test:e2e"
+    "test:all": "npm test && npm run test:integration && npm run test:e2e",
+    "worktree:new": "bash scripts/new-worktree.sh",
+    "worktree:cleanup": "bash scripts/cleanup-worktree.sh"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
