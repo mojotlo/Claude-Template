@@ -5,6 +5,7 @@ export default defineConfig({
     // Integration tests — requires Docker Postgres to be running
     // Run: docker compose up -d before executing these tests
     include: ['tests/integration/**/*.test.ts'],
+    globals: true,
     environment: 'node',
     // Run integration tests sequentially to avoid DB conflicts
     pool: 'forks',
