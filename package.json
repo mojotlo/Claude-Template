@@ -7,16 +7,24 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "echo 'No test framework configured yet' && exit 0"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:integration": "vitest run --config vitest.config.integration.ts",
+    "test:e2e": "playwright test",
+    "test:all": "npm test && npm run test:integration && npm run test:e2e"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.0",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",

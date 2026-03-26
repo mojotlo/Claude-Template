@@ -8,3 +8,13 @@ build/
 .DS_Store
 coverage/
 .nyc_output/
+
+# Vitest
+coverage/
+
+# Playwright
+playwright-report/
+test-results/
+
+# Docker
+.docker/

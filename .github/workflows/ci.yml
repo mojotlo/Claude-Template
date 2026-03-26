@@ -7,29 +7,68 @@ on:
     branches: [main]
 
 jobs:
-  ci:
+  typecheck:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+      - run: npm ci
+      - run: npm run typecheck
 
-      - name: Install dependencies
-        run: npm ci
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
 
-      - name: Typecheck
-        run: npm run typecheck
+  test-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:coverage
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Test
-        run: npm test
+  test-integration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
+      DIRECT_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx prisma migrate deploy
+      - run: npm run test:integration
 
   claude-review:
     runs-on: ubuntu-latest
@@ -37,10 +76,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Claude Code Review
         uses: anthropics/claude-code-action@beta
         with:
