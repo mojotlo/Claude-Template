@@ -46,23 +46,28 @@ A good plan enables 1-shot implementation. Invest in it.
 
 ## TDD Workflow
 
-For every new feature or behavior change, follow Red-Green-Refactor strictly:
+Tests must come from the spec, not from the implementation.
+The goal is tests that verify behavior defined in the issue, not tests that
+describe what was built.
 
-**Red** — write the test first, before any implementation:
+**Red — translate acceptance criteria into tests:**
 1. Read the acceptance criteria from the GitHub issue
-2. Write tests that assert each criterion is met
-3. Run `npm test` — tests must FAIL at this point
-   - If tests pass before implementation, the test is wrong — fix it
-4. Commit the failing tests: `git commit -m "test: add failing tests for <feature>"`
+2. For each criterion, write a test that asserts it is met
+   - Map criterion → test case directly, one to one
+   - If a criterion can't be expressed as a test, the criterion is too vague
+     — stop and clarify the issue spec before proceeding
+3. Run `npm test` — new tests must FAIL
+   - If they pass before any implementation, the test is wrong — fix it
+4. Commit: `git commit -m "test: add failing tests for <feature>"`
 
-**Green** — write the minimum implementation to make tests pass:
-1. Write only enough code to make the failing tests pass
+**Green — implement until tests pass:**
+1. Write the minimum code to make failing tests pass
 2. Run `npm test` after each meaningful change
-3. Do not write more than the tests require
+3. Do not write code that isn't required by a test
 
-**Refactor** — clean up without changing behavior:
-1. Run `/simplify` — only after tests are green
-2. Tests must remain green throughout
+**Refactor — clean up:**
+1. Run `/simplify` — only after all tests are green
+2. Tests must stay green throughout
 
 ### Test modification rules
 
@@ -78,6 +83,16 @@ You may NOT without explicit human approval:
 
 If you believe an existing test is incorrect, stop and explain why.
 Do not change it. Wait for human confirmation before proceeding.
+
+### What to do when acceptance criteria are too vague
+
+If an issue says "add user registration" with no specific criteria,
+you cannot write meaningful tests from it. Stop, and either:
+- Ask the human to clarify the acceptance criteria
+- Propose specific criteria and ask for approval before writing any tests
+
+Never invent acceptance criteria on your own. They define what the
+software is supposed to do — that's a human decision.
 
 ---
 
