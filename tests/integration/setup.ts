@@ -1,14 +1,15 @@
 import { prisma } from '../../src/infrastructure/database/client'
 
-// Runs before each integration test file
-// Cleans the database between test runs to prevent state bleed
+// Runs before each integration test file.
+// Cleans the database between test runs to prevent state bleed.
+//
+// Add deleteMany() calls here in reverse dependency order as you add models.
+// Example:
+//   await prisma.post.deleteMany()
+//   await prisma.user.deleteMany()
 
 beforeEach(async () => {
-  // Delete all rows in reverse dependency order
-  // Add your tables here as you add models to schema.prisma
-  // Example:
-  // await prisma.post.deleteMany()
-  // await prisma.user.deleteMany()
+  // Add cleanup here as you add models to schema.prisma
 })
 
 afterAll(async () => {
