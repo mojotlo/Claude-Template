@@ -27,11 +27,16 @@ Do not skip steps. Do not jump straight to implementation.
 
 Use Plan mode (Shift+Tab twice in Claude Code) before implementing.
 
-If the task references a GitHub issue number (e.g. "implement issue #12"):
-1. Run `gh issue view 12` to read the full issue spec
+**Starting a new feature from scratch:**
+Run `/spec` to produce a properly structured GitHub issue before any implementation.
+Do not start a code session without a spec that has passed the testability check.
+
+**Implementing an existing issue:**
+1. Run `gh issue view <N>` to read the full spec
 2. Check the Dependencies section — if blocked by another issue, stop and report
 3. Use the acceptance criteria as the definition of done
-4. Reference the issue number in the PR body as "Closes #12"
+   — each criterion must map to a test case
+4. Reference the issue number in the PR body as "Closes #<N>"
 
 A good plan:
 - names the specific files to be changed

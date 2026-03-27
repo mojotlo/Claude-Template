@@ -55,12 +55,14 @@ npx prisma db push          # push schema changes without a migration (prototypi
 Every feature or fix follows this loop. Do not skip steps.
 
 ```
-Plan mode        → agree on spec and approach before writing any code
+/spec            → turn a feature idea into a testable GitHub issue (plan mode)
+Plan mode        → review spec, confirm approach before writing any code
 Code mode        → execute the spec; loop until all tests pass
 /simplify        → clean up code without changing behavior (only on green tests)
 /verify          → start dev server, open browser, confirm app works end to end
 /code-review     → catch anything missed; flag must-fix issues before committing
 /commit-push-pr  → commit, push branch, open PR with description
+/wrap-session    → capture session learnings, propose CLAUDE.md updates
 ```
 
 ### Rules for this loop
