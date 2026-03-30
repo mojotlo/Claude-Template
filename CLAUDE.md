@@ -2,13 +2,19 @@
 
 This is an AI-assisted JavaScript/TypeScript/Node.js project.
 
-Read the following files before doing any work, in this order:
+**Before responding to any request or writing any code, read all of the
+following files in full. Do not skip or skim them. Do not proceed until
+you have read every one.**
 
 1. `ai/system-invariants.md` — rules that must never be violated
-2. `ai/agent-bootstrap.md` — working process and task workflow
+2. `ai/agent-bootstrap.md` — working process, TDD workflow, subagent invocation
 3. `ai/ai-guide.md` — architecture, layers, and dev strategy
 4. `ai/repo-map.md` — where to find things in this repository
 5. `ai/allowed-changes.md` — what you are and are not allowed to do
+6. `ai/decisions/README.md` — current tech stack decisions
+
+If you are starting a new session, run `/init` to confirm all files
+have been read before beginning any work.
 
 ---
 
@@ -55,6 +61,7 @@ npx prisma db push          # push schema changes without a migration (prototypi
 Every feature or fix follows this loop. Do not skip steps.
 
 ```
+/init            → start of every session: read all context files, confirm loaded
 /spec            → turn a feature idea into a testable GitHub issue (plan mode)
 Plan mode        → review spec, confirm approach before writing any code
 Code mode        → execute the spec; loop until all tests pass
