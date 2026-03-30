@@ -179,6 +179,20 @@ Invoke it whenever something went wrong, a retry was needed, or an architecture 
 
 ---
 
+## Security Audits
+
+Run `/security-audit` periodically — not on every PR. Good triggers:
+- Before a first public launch
+- Before adding payment processing
+- After a major dependency upgrade
+- Every 4-6 weeks on an active project
+- Any time you're unsure about auth boundaries
+
+The audit is read-only — it never modifies files. It produces a
+Critical / High / Advisory report. Critical issues block release.
+
+---
+
 ## When to Bail
 
 Some sessions should be abandoned rather than continued. Run `/bail` when:
