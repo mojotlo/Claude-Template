@@ -13,7 +13,7 @@ you have read every one.**
 5. `ai/allowed-changes.md` — what you are and are not allowed to do
 6. `ai/decisions/README.md` — current tech stack decisions
 
-If you are starting a new session, run `/init` to confirm all files
+If you are starting a new session, run `/load-context` to confirm all files
 have been read before beginning any work.
 
 ---
@@ -61,7 +61,7 @@ npx prisma db push          # push schema changes without a migration (prototypi
 Every feature or fix follows this loop. Do not skip steps.
 
 ```
-/init            → start of every session: read all context files, confirm loaded
+/load-context    → start of every session: read all context files, confirm loaded
 /spec            → turn a feature idea into a testable GitHub issue (plan mode)
 Plan mode        → review spec, confirm approach before writing any code
 Code mode        → execute the spec; loop until all tests pass

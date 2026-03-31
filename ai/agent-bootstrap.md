@@ -220,8 +220,9 @@ from a previous session, run `/catchup` before doing anything else.
 
 The pattern is:
 1. `/clear` — clears the context window to free up tokens
-2. `/catchup` — re-orients to the current state of the branch
-3. Continue from where the previous session left off
+2. `/load-context` — re-reads all context files into the fresh window
+3. `/catchup` — re-orients to the current state of the branch
+4. Continue from where the previous session left off
 
 ---
 

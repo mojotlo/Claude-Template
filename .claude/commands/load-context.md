@@ -1,4 +1,4 @@
-# Init
+# Load Context
 
 You have just started a new session. Before responding to any request or
 taking any action, read and confirm every context file in order.
