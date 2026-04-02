@@ -75,9 +75,9 @@ Present them numbered, like:
 
 ```
 Proposed CLAUDE.md update #1:
-Pattern: Claude repeatedly tried to run prisma generate before checking for models
-Addition: "Always check for models in schema.prisma before running prisma generate"
-Section: Project-Specific Notes
+Pattern: <what went wrong>
+Addition: "<exact text to add>"
+Section: Project Brief (or ai/core/project-notes.md if implementation-specific)
 
 Approve? (yes / no / modify)
 ```
@@ -87,7 +87,7 @@ Wait for approval on each one before applying any of them.
 ## Step 4 — Apply approved updates
 
 For each approved update:
-- Edit CLAUDE.md to add the approved text to the specified section
+- Edit the appropriate file to add the approved text
 - Confirm each edit was applied
 
 ## Step 5 — Commit the session log

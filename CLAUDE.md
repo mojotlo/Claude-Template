@@ -2,57 +2,48 @@
 
 This is an AI-assisted JavaScript/TypeScript/Node.js project.
 
-**Before responding to any request or writing any code, read all of the
-following files in full. Do not skip or skim them. Do not proceed until
-you have read every one.**
+## Context files — what to read and when
 
-1. `ai/system-invariants.md` — rules that must never be violated
-2. `ai/agent-bootstrap.md` — working process, TDD workflow, subagent invocation
-3. `ai/ai-guide.md` — architecture, layers, and dev strategy
-4. `ai/repo-map.md` — where to find things in this repository
-5. `ai/allowed-changes.md` — what you are and are not allowed to do
-6. `ai/decisions/README.md` — current tech stack decisions
+### Always read at session start (core)
 
-If you are starting a new session, run `/load-context` to confirm all files
-have been read before beginning any work.
+Run `/load-context` or read these four files manually before any work:
+
+1. `ai/core/system-invariants.md` — absolute constraints that must never be violated
+2. `ai/core/agent-bootstrap.md` — working process and TDD workflow
+3. `ai/core/repo-map.md` — layer locations and critical singletons
+4. `ai/core/project-notes.md` — project-specific facts Claude would otherwise get wrong
+
+### Read on demand (supplementary)
+
+Load these only when the task requires them:
+
+- `ai/supplementary/ai-guide.md` — read before writing code, reviewing code, or creating a new module
+- `ai/supplementary/allowed-changes.md` — read before starting any implementation task
+- `ai/supplementary/repo-map.md` — read when you need exact file paths, module details, or the dependency list
+- `ai/decisions/README.md` + relevant ADR — read when a task touches architecture or introduces a new dependency
+
+> **CRITICAL:** Read core files before any work. Supplementary files are not optional when their
+> trigger condition applies — skipping them is how architecture violations and out-of-scope work happen.
 
 ---
 
 ## Quick Reference
 
 ### Commands
-```bash
-npm run dev        # start development server
-npm test           # run test suite
-npm run build      # production build
-npm run lint       # lint check
-npm run typecheck  # TypeScript type check
-```
 
-### Database Commands
-```bash
-npx prisma migrate dev      # create and apply a migration (development)
-npx prisma migrate deploy   # apply migrations (production/CI)
-npx prisma generate         # regenerate Prisma client after schema changes
-npx prisma studio           # open database GUI
-npx prisma db push          # push schema changes without a migration (prototyping only)
-```
-
-> Update these commands to match this project's actual package.json scripts.
+See `package.json` scripts. Key commands: `npm test`, `npm run dev`, `npm run build`, `npm run lint`, `npm run typecheck`.
 
 ### Stack
+
+> Replace this section when cloning the template.
+
 - **Language:** TypeScript (strict mode)
 - **Runtime:** Node.js
 - **Package manager:** [npm / pnpm / yarn — fill in]
-- **Test framework:** [Jest / Vitest / etc — fill in]
-
-### Key Rules (full details in ai/ files)
-- Tests must pass after every change
-- Never modify `node_modules/`, lock files, or deployment config without explicit instruction
-- Keep files under 300 lines; 500 is the hard maximum
-- Follow existing patterns — consistency over novelty
-- When in doubt, stop and ask
-- New libraries or architectural patterns require an ADR in `ai/decisions/` before implementation
+- **Test framework:** [Vitest / Jest — fill in]
+- **Frontend:** [fill in or remove]
+- **Auth:** [fill in or remove]
+- **Database:** [fill in or remove]
 
 ---
 
@@ -61,64 +52,29 @@ npx prisma db push          # push schema changes without a migration (prototypi
 Every feature or fix follows this loop. Do not skip steps.
 
 ```
-/load-context    → start of every session: read all context files, confirm loaded
-/spec            → turn a feature idea into a testable GitHub issue (plan mode)
+/load-context    → read core ai/ files and confirm context is loaded (start of every session)
+/spec            → turn a feature idea into a testable GitHub issue; offers to create worktree
 Plan mode        → review spec, confirm approach before writing any code
 Code mode        → execute the spec; loop until all tests pass
 /simplify        → clean up code without changing behavior (only on green tests)
-/verify          → start dev server, open browser, confirm app works end to end
+/verify          → typecheck, lint, tests, browser smoke test
 /code-review     → catch anything missed; flag must-fix issues before committing
-/commit-push-pr  → commit, push branch, open PR with description
-/wrap-session    → capture session learnings, propose CLAUDE.md updates
+/commit-push-pr  → commit, push branch, open PR, monitor CI until green
+/wrap-session    → write session log, propose CLAUDE.md updates for approval
 ```
 
-### Rules for this loop
-- Each spec should be small enough to complete in one session — split if unsure
-- Never run /simplify on failing tests
-- /verify may surface issues that send you back to code mode — that is expected
-- /code-review is a first pass, not a substitute for reading the diff yourself
-- The PR is the final human gate — review before merging
-- GitHub Actions will run CI automatically on the PR (lint, typecheck, tests, Claude review)
-
----
-
-## Working with GitHub Issues
-
-Features and bugs are tracked as GitHub Issues. Each issue is a self-contained spec
-that Claude Code can execute in Plan mode.
-
-**To implement a feature:**
-1. Find the issue number on GitHub (e.g. #12)
-2. In Claude Code Plan mode: "Implement issue #12"
-3. Claude reads the issue, plans the change, you approve
-4. The PR body should include "Closes #12" to auto-close the issue on merge
-
-**Issue templates** live in `.github/ISSUE_TEMPLATE/`:
-- `feature.md` — new features with acceptance criteria
-- `bug.md` — bugs with reproduction steps
-
-**Priority labels:** P0 (critical), P1 (important), P2 (nice to have)
+Full workflow rules and subagent invocation order are in `ai/core/agent-bootstrap.md`.
 
 ---
 
 ## Project Brief
 
 > Replace this section when cloning the template.
-> Keep it short — 1-3 paragraphs. Claude reads this every session.
->
-> Cover:
-> - What this app does and who it's for
-> - The core problem it solves
-> - Any business rules or domain context Claude needs to understand
-> - Areas that are frozen or sensitive
-> - Anything Claude has done wrong before in this repo
+> Keep it short — 1 paragraph and a few key domain rules.
+> Detailed facts and gotchas belong in `ai/core/project-notes.md`.
 
----
+[Describe what this project does and what problem it solves]
 
-## Project-Specific Notes
-
-> Replace this section when cloning the template.
-> Add anything Claude should know about this specific project:
-> - non-obvious decisions that have already been made
-> - third-party services in use (with links to their docs)
-> - known gotchas or areas of complexity
+Key domain rules:
+- [fill in non-obvious domain rules that affect implementation]
+- [fill in]

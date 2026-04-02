@@ -10,16 +10,36 @@ when a decision changes or new context emerges.
 
 | ADR | Decision | Status | Revisit When |
 |---|---|---|---|
-| [ADR-001](ADR-001-database.md) | Database — Neon (PostgreSQL) | Accepted | $50+/mo, need RLS, want Supabase features |
-| [ADR-002](ADR-002-orm.md) | ORM — Prisma | Accepted | Prisma v6 breaking changes, or perf issues |
-| [ADR-003](ADR-003-auth.md) | Auth — Clerk | Accepted | MAU costs exceed $25/mo, or need self-hosted |
-| [ADR-004](ADR-004-testing.md) | Testing — Vitest + Playwright | Accepted | Framework switch (Next.js, etc.) |
-| [ADR-005](ADR-005-ci.md) | CI — GitHub Actions + Claude Review | Accepted | Team grows, need more sophisticated pipelines |
+| [add ADRs here] | | | |
 
 ## How to use these
 
-- **When starting a project:** review each ADR and update status/notes for your context
+- **When starting a project:** create an ADR for each major stack decision
 - **When making a new architectural decision:** create a new ADR before implementing
 - **When a decision no longer holds:** update status to `Superseded` and link the new ADR
 - **Claude Code:** if a task involves a new library, framework, or architectural pattern,
   create or update the relevant ADR as part of the task — do not implement without documenting
+
+## ADR template
+
+```markdown
+# ADR-00N: [Decision title]
+
+## Status
+Accepted
+
+## Decision
+[What was decided in one sentence]
+
+## Context
+[Why this decision was needed]
+
+## Alternatives considered
+[What else was evaluated and why it was rejected]
+
+## Consequences
+[What this means going forward — what becomes easier, what becomes harder]
+
+## Revisit when
+[The condition under which this decision should be re-evaluated]
+```

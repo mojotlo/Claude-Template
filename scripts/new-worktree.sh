@@ -10,7 +10,7 @@
 #   2. Creates a new branch feat/issue-<N>
 #   3. Creates a worktree directory at ../$(repo-name)-issue-<N>
 #   4. Prints the gh issue view so you can see the spec
-#   5. Opens Claude Code in the new worktree
+#   5. Opens Claude Code in the new worktree with /load-context pre-seeded
 
 set -e
 
@@ -42,8 +42,7 @@ gh issue view "$ISSUE"
 echo "─────────────────────────────────────────"
 echo ""
 
-# Open Claude Code in the new worktree
+# Open Claude Code in the new worktree with load-context pre-seeded
 echo "→ Opening Claude Code in $WORKTREE_PATH..."
-echo "   Tip: tell Claude 'Implement issue #$ISSUE'"
 echo ""
-cd "$WORKTREE_PATH" && claude
+cd "$WORKTREE_PATH" && claude "/load-context then implement issue #$ISSUE"

@@ -97,14 +97,12 @@ git add CLAUDE.md 2>/dev/null
 git stash drop 2>/dev/null || true
 git checkout -- .              # discard all working changes
 git clean -fd                  # remove untracked files
-
-# Or if you want to keep nothing at all:
-# git reset --hard main
 ```
 
-Then from the main repo, the human can run:
+Then from the main repo, clean up the worktree:
 ```bash
-npm run worktree:cleanup <issue-number>
+git worktree remove ../<repo>-issue-<N>
+git branch -d feat/issue-<N>
 ```
 
 ## Step 7 — Final report
@@ -113,7 +111,7 @@ Tell the human:
 - What was captured in the bail log
 - Whether the issue spec was updated
 - Whether CLAUDE.md was updated
-- Exact command to clean up the worktree from the main repo
+- Exact commands to clean up the worktree from the main repo
 
 ## Rules
 
